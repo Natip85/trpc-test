@@ -9,7 +9,7 @@ import {
 } from '@/ui/dropdown-menu'
 import {SidebarMenu, SidebarMenuButton, SidebarMenuItem, useSidebar} from '@/ui/sidebar'
 import {ChevronsUpDown, HomeIcon, LogOutIcon, SettingsIcon, User2} from 'lucide-react'
-import {User} from 'next-auth'
+import {type User} from 'next-auth'
 import {signOut} from 'next-auth/react'
 import {ThemeToggle} from '../theme-toggle'
 type Props = {
