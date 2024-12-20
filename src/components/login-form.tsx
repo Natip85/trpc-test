@@ -10,7 +10,6 @@ import {zodResolver} from '@hookform/resolvers/zod'
 import {Form, FormControl, FormField, FormItem, FormMessage} from '@/ui/form'
 import {Input} from '@/ui/input'
 import {Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle} from '@/ui/card'
-import {useUser} from '@/hooks/use-user'
 
 export const LoginSchema = z.object({
   email: z.string().email({message: 'Invalid email address'}),
@@ -18,9 +17,6 @@ export const LoginSchema = z.object({
 export type LoginSchemaType = z.infer<typeof LoginSchema>
 
 export function LoginForm({callbackUrl = '/'}: {callbackUrl?: string}) {
-  const testVar = 'hi'
-  const testVar2 = 'hi2'
-  const testVar = 'hi3'
   const form = useForm<LoginSchemaType>({
     resolver: zodResolver(LoginSchema),
     defaultValues: {
