@@ -18,6 +18,7 @@ export const LoginSchema = z.object({
 export type LoginSchemaType = z.infer<typeof LoginSchema>
 
 export function LoginForm({callbackUrl = '/'}: {callbackUrl?: string}) {
+  const testVar = 'hi'
   const form = useForm<LoginSchemaType>({
     resolver: zodResolver(LoginSchema),
     defaultValues: {
