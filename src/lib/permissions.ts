@@ -1,6 +1,6 @@
 import type {User} from 'next-auth'
-import {UserRole} from '@/server/db/schema'
-import {UserSelect} from '@/server/db/user-types'
+import {type UserRole} from '@/server/db/schema'
+import {type UserSelect} from '@/server/db/user-types'
 
 type Permissions = {
   users: {

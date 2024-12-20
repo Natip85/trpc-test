@@ -9,13 +9,11 @@ import {useForm} from 'react-hook-form'
 import {Form, FormControl, FormField, FormItem, FormLabel, FormMessage} from '@/ui/form'
 import {Input} from '@/ui/input'
 import {Button} from '@/ui/button'
-import {appRouter} from '@/server/api/root'
 
 interface ProfileEditFormProps {
   user: UserProfileForm
 }
 export default function ProfileEditForm({user}: ProfileEditFormProps) {
-  const xsxsxsx = 'fdfd'
   const {mutateAsync: updateUser, isPending: isLoading} = api.users.updateMe.useMutation()
   const {user: AuthUser} = useUser()
   const form = useForm<UserProfileForm>({
