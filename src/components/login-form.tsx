@@ -1,86 +1,78 @@
-"use client";
+'use client'
 
-import { signIn } from "next-auth/react";
+import {signIn} from 'next-auth/react'
 
-import { Button } from "@/components/ui/button";
-import GoogleIcon from "@/assets/images/google.svg";
-import { z } from "zod";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { Form, FormControl, FormField, FormItem, FormMessage } from "@/ui/form";
-import { Input } from "@/ui/input";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/ui/card";
+import {Button} from '@/components/ui/button'
+import GoogleIcon from '@/assets/images/google.svg'
+import {z} from 'zod'
+import {useForm} from 'react-hook-form'
+import {zodResolver} from '@hookform/resolvers/zod'
+import {Form, FormControl, FormField, FormItem, FormMessage} from '@/ui/form'
+import {Input} from '@/ui/input'
+import {Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle} from '@/ui/card'
+import {useUser} from '@/hooks/use-user'
 
 export const LoginSchema = z.object({
-  email: z.string().email({ message: "Invalid email address" }),
-});
-export type LoginSchemaType = z.infer<typeof LoginSchema>;
+  email: z.string().email({message: 'Invalid email address'}),
+})
+export type LoginSchemaType = z.infer<typeof LoginSchema>
 
-export function LoginForm({ callbackUrl = "/" }: { callbackUrl?: string }) {
+export function LoginForm({callbackUrl = '/'}: {callbackUrl?: string}) {
   const form = useForm<LoginSchemaType>({
     resolver: zodResolver(LoginSchema),
     defaultValues: {
-      email: "",
+      email: '',
     },
-  });
+  })
   const onSubmit = async (values: LoginSchemaType) => {
-    void signIn("resend", {
+    void signIn('resend', {
       email: values.email,
       callbackUrl,
-    });
-  };
+    })
+  }
 
   return (
-    <Card className="border-none">
+    <Card className='border-none'>
       <CardHeader>
         <CardTitle>Login to your JHDB account</CardTitle>
-        <CardDescription>
-          We&apos;ll keep you updated on any submissions that you make
-        </CardDescription>
+        <CardDescription>We&apos;ll keep you updated on any submissions that you make</CardDescription>
       </CardHeader>
       <CardContent>
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-3">
+          <form onSubmit={form.handleSubmit(onSubmit)} className='space-y-3'>
             <FormField
               control={form.control}
-              name="email"
-              render={({ field, fieldState }) => (
+              name='email'
+              render={({field, fieldState}) => (
                 <FormItem>
                   <FormControl>
-                    <Input id="email" {...field} placeholder="Email" />
+                    <Input id='email' {...field} placeholder='Email' />
                   </FormControl>
                   <FormMessage>{fieldState.error?.message}</FormMessage>
                 </FormItem>
               )}
             />
             <div>
-              <Button type="submit" className="w-full">
+              <Button type='submit' className='w-full'>
                 Login
               </Button>
             </div>
           </form>
         </Form>
-        <div className="relative mt-6 flex items-center">
-          <div className="flex-grow border" />
-          <span className="px-2">or</span>
-          <div className="flex-grow border" />
+        <div className='relative mt-6 flex items-center'>
+          <div className='flex-grow border' />
+          <span className='px-2'>or</span>
+          <div className='flex-grow border' />
         </div>
       </CardContent>
       <CardFooter>
-        <div className="flex w-full flex-col gap-3">
+        <div className='flex w-full flex-col gap-3'>
           <Button
-            variant={"outline"}
-            size="lg"
-            className="w-full"
+            variant={'outline'}
+            size='lg'
+            className='w-full'
             onClick={() =>
-              signIn("google", {
+              signIn('google', {
                 callbackUrl,
               })
             }
@@ -90,5 +82,5 @@ export function LoginForm({ callbackUrl = "/" }: { callbackUrl?: string }) {
         </div>
       </CardFooter>
     </Card>
-  );
+  )
 }
