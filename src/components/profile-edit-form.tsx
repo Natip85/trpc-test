@@ -14,6 +14,7 @@ interface ProfileEditFormProps {
   user: UserProfileForm
 }
 export default function ProfileEditForm({user}: ProfileEditFormProps) {
+  const unused = 'fdgf'
   const {mutateAsync: updateUser, isPending: isLoading} = api.users.updateMe.useMutation()
   const {user: AuthUser} = useUser()
   const form = useForm<UserProfileForm>({
